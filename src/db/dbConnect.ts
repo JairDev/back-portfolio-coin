@@ -7,7 +7,7 @@ async function dbConnect() {
     .then(() => {
       console.log("Successfully connected to Database");
     })
-    .catch((error: Error) => {
+    .catch((error) => {
       console.log("Unable to connected to Database");
       console.error(error);
     });
