@@ -119,4 +119,13 @@ app.post("/login", (request, response) => {
     });
 });
 
+// Proteger puntos finales de usuarios no autenticados
+app.get("/free-endpoint", (request, response) => {
+  response.json({ message: "Puedes ver esto aunque no hayas iniciado sesión" });
+});
+
+app.get("/auth-endpoint", (request, response) => {
+  response.json({ message: "Tienes acceso a esta app" });
+});
+
 module.exports = app;
