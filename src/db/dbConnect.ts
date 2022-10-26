@@ -14,4 +14,3 @@ async function dbConnect() {
 }
 
 module.exports = dbConnect;
-export {};
