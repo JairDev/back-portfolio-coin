@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const dbConnectApp = require("./src/db/dbConnect.ts");
 const User = require("./src/db/userModel.ts");
@@ -65,6 +66,54 @@ app.post("/register", (request, response) => {
     .catch((error) => {
       response.status(500).send({
         message: "Password was not hashed successfully",
+        error,
+      });
+    });
+});
+
+// login endpoint
+app.post("/login", (request, response) => {
+  //buscar el email para saber si existe
+  User.findOne({ email: request.body.email })
+    .then((user) => {
+      //comparar la contraseña introducida con la contraseña hash en la base de datos
+      bcrypt
+        .compare(request.body.password, user.password)
+        .then((passwordCheck) => {
+          // comprobar si la contraseña es correcta
+          if (!passwordCheck) {
+            return response.status(400).send({
+              message: "Password does not match",
+            });
+          }
+          // si las contraseñas coinciden crear un token jwt aleatorio
+          const token = jwt.sign(
+            {
+              userId: user._id,
+              userEmail: user.email,
+            },
+            "RANDOM-TOKEN",
+            { expiresIn: "24h" }
+          );
+
+          response.status(200).send({
+            message: "Login Successful",
+            email: user.email,
+            token,
+          });
+        })
+        // la comparación de contraseñas no fue exitosa
+        .catch((error) => {
+          response.status(400).send({
+            message: "Password does not match",
+            error,
+          });
+        });
+    })
+    // la busqueda del correo electronico no fue exitosa
+    .catch((error) => {
+      response.status(404).send({
+        message: "Email not found",
         error,
       });
     });
