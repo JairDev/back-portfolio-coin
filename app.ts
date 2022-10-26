@@ -9,7 +9,12 @@ const jwt = require("jsonwebtoken");
 const dbConnectApp = require("./src/db/dbConnect.ts");
 const User = require("./src/db/userModel.ts");
 
+const auth = require("./auth.ts");
+
 dbConnectApp();
+
+//manejar los errores de CORS
+//Esto permitirá al usuario en el frontend consumir las APIs
 
 app.use((request, response, next) => {
   response.setHeader("Access-Control-Allow-Origin", "*");
@@ -124,7 +129,7 @@ app.get("/free-endpoint", (request, response) => {
   response.json({ message: "Puedes ver esto aunque no hayas iniciado sesión" });
 });
 
-app.get("/auth-endpoint", (request, response) => {
+app.get("/auth-endpoint", auth, (request, response) => {
   response.json({ message: "Tienes acceso a esta app" });
 });
 

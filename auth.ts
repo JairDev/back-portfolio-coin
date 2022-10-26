@@ -10,7 +10,7 @@ module.exports = async (request, response, next) => {
     request.user = user;
     next();
   } catch (error) {
-    response.status.json({
+    response.status(401).json({
       error: new Error("Invalid request!"),
     });
   }
