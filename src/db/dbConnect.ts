@@ -1,7 +1,9 @@
-import { config } from "dotenv";
+require("dotenv").config({
+  path: "/home/alfredo/Documentos/projects/back-coin-api/src/.env",
+});
+// import { config } from "dotenv";
 import mongoose from "mongoose";
 
-config({ path: "/home/alfredo/Documentos/projects/back-coin-api/src/.env" });
 const DB_URL = process.env.DB_URL as string;
 
 async function dbConnect() {
