@@ -1,10 +1,7 @@
-require("dotenv").config({
-  path: "/home/alfredo/Documentos/projects/back-coin-api/src/.env",
-});
-// import { config } from "dotenv";
+import { config } from "dotenv";
 import app from "./app";
 
-// config({ path: "/home/alfredo/Documentos/projects/back-coin-api/src/.env" });
+config({ path: "/home/alfredo/Documentos/projects/back-coin-api/src/.env" });
 
 const PORT = process.env.PORT || 3000;
 
