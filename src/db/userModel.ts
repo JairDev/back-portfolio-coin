@@ -23,10 +23,7 @@ const UserSchema = new mongoose.Schema<IUser>({
 });
 
 // //@ts-ignore
-const Users = mongoose.model<IUser>("Users", UserSchema);
 //crear una tabla o colección de usuario si ya no hay ninguna tabla con ese nombre
-// module.exports = mongoose.model.Users || mongoose.model("Users", UserSchema);
-
-// export default mongoose.model("Users", UserSchema);
+const Users = mongoose.model<IUser>("Users", UserSchema);
 
 export default Users;
