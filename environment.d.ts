@@ -6,12 +6,6 @@
 //       ENV: "test" | "dev" | "prod";
 //     }
 //   }
-
-//   namespace Express {
-//     interface Request {
-//       user: JWTPayload | string;
-//     }
-//   }
 // }
 
-// export {};
+export {};

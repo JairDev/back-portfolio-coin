@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
 const auth = async (req: Request, res: Response, next: NextFunction) => {
@@ -9,7 +9,6 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
     //@ts-ignore
     const decodeToken = await jwt.verify(token, "RANDOM-TOKEN");
     const user = await decodeToken;
-    //@ts-ignore
     req.user = user;
     next();
   } catch (error) {
