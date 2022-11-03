@@ -12,13 +12,11 @@ loginRouter.post("/", (req, res) => {
     // console.log(req.body.email);
     userModel_1.default
         //comprobar si el correo electrónico existe
-        //@ts-ignore
         .findOne({ email: req.body.email })
         .orFail()
         .then((user) => {
         //comparar contraseña introducida con la contraseña hash almacenada en al base de datos
         bcrypt_1.default
-            //@ts-ignore
             .compare(req.body.password, user === null || user === void 0 ? void 0 : user.password)
             .then((passwordCheck) => {
             //Comprobar si las contraseñas coinciden

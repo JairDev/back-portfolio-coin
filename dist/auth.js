@@ -22,7 +22,6 @@ const auth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () 
         //@ts-ignore
         const decodeToken = yield jsonwebtoken_1.default.verify(token, "RANDOM-TOKEN");
         const user = yield decodeToken;
-        //@ts-ignore
         req.user = user;
         next();
     }
