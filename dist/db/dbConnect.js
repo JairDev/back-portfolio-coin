@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = require("dotenv");
 const mongoose_1 = __importDefault(require("mongoose"));
-// config({ path: "/home/alfredo/Documentos/projects/back-coin-api/src/.env" });
 (0, dotenv_1.config)();
 const DB_URL = process.env.DB_URL;
 function dbConnect() {

@@ -1,7 +1,6 @@
 import { config } from "dotenv";
 import mongoose from "mongoose";
 
-// config({ path: "/home/alfredo/Documentos/projects/back-coin-api/src/.env" });
 config();
 const DB_URL = process.env.DB_URL as string;
 
